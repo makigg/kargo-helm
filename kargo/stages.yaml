@@ -77,12 +77,14 @@ spec:
       kind: Warehouse
       name: guestbook
     sources:
-      direct: true
+      stages:
+      - dev
   - origin:
       kind: Warehouse
       name: features
     sources:
-      direct: true
+      stages:
+      - dev
   promotionTemplate:
     spec:
       steps:
@@ -98,7 +100,7 @@ spec:
       - uses: helm-update-image
         as: update-image
         config:
-          path: ./out/env/dev/values.yaml
+          path: ./out/env/staging/values.yaml
           images:
           - image: ghcr.io/makigg/guestbook
             key: image.tag
